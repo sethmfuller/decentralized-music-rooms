@@ -1,4 +1,5 @@
-# decentralized-music-distribution-app
+# Decentralized Music Rooms
+[View the project proposal](https://github.com/sethmfuller/decentralized-music-rooms/blob/master/ProjectProposal%20(Detailed).pdf)
 
 ## Project setup
 ```
