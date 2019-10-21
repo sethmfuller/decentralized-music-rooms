@@ -1,0 +1,9 @@
+// Sidebar.scss
+@import 'variables.scss';
+
+#sidebar {
+  width: $sidebar_width;
+  height: 100vh;
+  background-color: $secondary;
+  border-right: $accent 1px solid;
+}

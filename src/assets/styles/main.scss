@@ -1,0 +1,29 @@
+@import 'variables.scss';
+@import 'sidebar.scss';
+
+body {
+  margin: 0px;
+  background-color: $primary;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  color: $white;
+
+  h1 {
+    margin: 0px;
+  }
+}
+
+#app {
+  display: flex;
+}
+
+.page {
+  flex-grow: 1;
+  background-color: $primary;
+  padding-top: 80px;
+  padding-left: 50px;
+
+  .page_title {
+    display: flex;
+  }
+}
