@@ -1,5 +1,6 @@
 @import 'variables.scss';
 @import 'sidebar.scss';
+@import 'home.scss';
 
 body {
   margin: 0px;
@@ -20,10 +21,24 @@ body {
 .page {
   flex-grow: 1;
   background-color: $primary;
-  padding-top: 80px;
+  padding-top: 70px;
   padding-left: 50px;
 
   .page_title {
     display: flex;
+    margin-left: -24px;
   }
+}
+
+.big_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 38px;
+  border-radius: 3px;
+  background-color: $accent;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
 }

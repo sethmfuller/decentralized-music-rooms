@@ -1,0 +1,83 @@
+// Home.scss
+
+@import 'variables.scss';
+
+#home {
+  .rooms {
+    padding-top: 50px;
+    display: flex;
+
+    .room {
+      width: 190px;
+      height: 150px;
+      background-color: $accent;
+      border-radius: 30px;
+      margin-right: 50px;
+      box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+
+      &.add_room {
+        background-color: $primary;
+        border: $accent 1px solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: none;
+      }
+
+      &.add_room:hover {
+        box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+
+  .other_rooms {
+    margin-top: 70px;
+
+    .other_rooms_title {
+      font-size: 2em;
+      font-weight: 100;
+      margin: 0px;
+    }
+
+    .other_rooms_subtitle {
+      font-weight: 100;
+      font-size: 15px;
+      margin: 0px;
+    }
+
+    .other_rooms_list {
+      margin-top: 40px;
+
+      .item {
+        display: flex;
+        align-items: center;
+        width: 500px;
+        margin-bottom: 20px;
+
+        img {
+          margin-right: 10px;
+        }
+
+        .room_name {
+          width: 260px;
+          font-size: 18px;
+        }
+
+        .join_button {
+          margin-right: 20px;
+        }
+
+        .members {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          
+          img {
+            margin: 0px;
+          }
+        }
+      }
+    }
+  }
+}
