@@ -7,11 +7,19 @@
 
     <div class="rooms">
       <div class="room">
-        
+        <div class="room_title">Seth's Electronic Music</div>
+        <div class="members">
+          <img src="../assets/icons/user.svg" alt="user count">
+          <span>3</span>
+        </div>
       </div>
 
       <div class="room">
-        
+        <div class="room_title">Josiah's Music</div>
+        <div class="members">
+          <img src="../assets/icons/user.svg" alt="user count">
+          <span>10</span>
+        </div>
       </div>
      
       <div class="room add_room">
