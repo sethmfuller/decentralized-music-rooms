@@ -1,30 +1,14 @@
 <template>
   <div id="home" class="home page">
-    <div class="page_title">
+    <div class="header_content">
       <img src="../assets/icons/music_note.svg" alt="music note">
-      <h1>Your Rooms</h1>
+      <h1 class="page_title">Your Rooms</h1>
     </div>
 
     <div class="rooms">
-      <div class="room">
-        <div class="room_title">Seth's Electronic Music</div>
-        <div class="members">
-          <img src="../assets/icons/user.svg" alt="user count">
-          <span>3</span>
-        </div>
-      </div>
-
-      <div class="room">
-        <div class="room_title">Josiah's Music</div>
-        <div class="members">
-          <img src="../assets/icons/user.svg" alt="user count">
-          <span>10</span>
-        </div>
-      </div>
-     
-      <div class="room add_room">
-        <img src="../assets/icons/add.svg" alt="add note">
-      </div>
+      <RoomTile :addRoom=false @click="this.goToRoom()"></RoomTile>
+      <RoomTile :addRoom=false></RoomTile>
+      <RoomTile :addRoom=true></RoomTile>
     </div>
 
     <div class="other_rooms">
@@ -55,8 +39,18 @@
 </template>
 
 <script>
-
+import RoomTile from '../components/RoomTile'
 export default {
   name: 'home',
+
+  components: {
+    RoomTile
+  },
+
+  methods: {
+    goToRoom() {
+      this.$router.push('/room');
+    },
+  }
 }
 </script>

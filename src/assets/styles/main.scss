@@ -1,7 +1,10 @@
 @import 'variables.scss';
-@import 'sidebar.scss';
 @import 'home.scss';
 @import 'room.scss';
+@import './components/sidebar.scss';
+@import './components/roomtile.scss';
+@import './components/audioplayer.scss';
+@import './components/songlistitem.scss';
 
 body {
   margin: 0px;
@@ -24,10 +27,15 @@ body {
   background-color: $primary;
   padding-top: 70px;
   padding-left: 50px;
+  padding-right: 50px;
 
-  .page_title {
+  .header_content {
     display: flex;
     margin-left: -24px;
+
+    .page_title {
+      flex-grow: 1;
+    }    
   }
 }
 

@@ -1,0 +1,50 @@
+// audioplayer.scss
+
+@import '../variables.scss';
+
+.audio_player {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .song_name {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 100;
+    margin-bottom: 10px;
+  }
+
+  .progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .running_time {
+      margin-right: 10px;
+    }
+  
+    .progress_bar {
+      width: 250px;
+      height: 2px;
+      background-color: white;
+  
+      .progress {
+        width: 45%;
+        height: inherit;
+        background-color: $accent;
+      }
+    }
+  
+    .total_time {
+      margin-left: 10px;
+    }
+  }
+}

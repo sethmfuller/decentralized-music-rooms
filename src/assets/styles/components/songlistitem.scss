@@ -1,0 +1,35 @@
+// songlistitem.scss
+
+@import '../variables.scss';
+
+.song_list_item {
+  display: flex;
+  align-items: center;
+
+  .section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .play_pause{
+    justify-content: flex-start;
+    width: 30px;
+    height: 24px;
+    cursor: pointer;
+  }
+
+  .song_name {
+    flex-grow: 1;
+    justify-content: flex-start;
+  }
+
+  .options {
+    width: 50px;
+    justify-content: flex-end;
+    
+    img {
+      cursor: pointer;
+    }
+  }
+}

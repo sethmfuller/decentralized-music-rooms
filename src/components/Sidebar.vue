@@ -1,6 +1,6 @@
 <template>
   <div id="sidebar">
-    <img class="user_img" src="../assets/Pirate3.png" alt="user img">
+    <img class="user_img" src="../assets/pic.jpg" alt="user img">
     <span class="user_name">Seth Fuller</span>
     <span class="user_hash">qo39al31jl3</span>
 

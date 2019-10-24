@@ -1,0 +1,42 @@
+// Sidebar.scss
+@import 'variables.scss';
+
+#sidebar {
+  width: $sidebar_width;
+  height: 100vh;
+  background-color: $secondary;
+  border-right: $accent 1px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .user_img {
+    width: 75px;
+    height: 75px;
+    border-radius: 75px;
+    border: $accent 1px solid;
+    margin-top: 70px;
+  }
+
+  .user_name {
+    margin-top: 20px;
+    font-weight: 100;
+    color: $accent;
+  }
+
+  .user_hash {
+    font-weight: 100;
+    color: $primary;
+    margin-bottom: 40px;
+  }
+
+  .user_hash:hover {
+    color: $accent;
+    cursor: pointer;
+  }
+
+  .activity {
+    border-top: $primary 1px solid;
+    width: 100%;
+  }
+}

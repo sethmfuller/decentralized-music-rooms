@@ -6,44 +6,6 @@
   .rooms {
     padding-top: 50px;
     display: flex;
-
-    .room {
-      width: 190px;
-      height: 150px;
-      background-color: $accent;
-      border-radius: 30px;
-      margin-right: 50px;
-      box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
-      cursor: pointer;
-      padding-left: 10px;
-
-      .room_title {
-        font-size: 18px;
-        font-weight: bold;
-        padding-left: 5px;
-        padding-right: 5px;
-        padding-top: 20px;
-        padding-bottom: 10px;
-      }
-
-      .members {
-        display: flex;
-        align-items: center;
-      }
-
-      &.add_room {
-        background-color: $primary;
-        border: $accent 1px solid;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: none;
-      }
-
-      &.add_room:hover {
-        box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
-      }
-    }
   }
 
   .other_rooms {
