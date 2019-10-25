@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="now_playing">
-      <AudioPlayer :fileName="'../assets/sample.mp3'"></AudioPlayer>
+      <AudioPlayer :fileName="'../../audio/sample.mp3'"></AudioPlayer>
     </div>
     <div class="song_list">
       <SongListItem v-for="song in songs" :key="song.id" :song="song" :playing="false"></SongListItem>
@@ -38,7 +38,7 @@ export default {
     songs: []
   }),
 
-  mounted() {
+  created() {
     this.songs[0] = {
       id: Math.random() * 100,
       name: "My Cool Song",

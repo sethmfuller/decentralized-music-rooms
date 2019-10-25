@@ -10,46 +10,67 @@
     <div class="song_name">A Song</div>
     
     <div class="progress">
-      <span class="running_time">1:25</span>
+      <span class="running_time">{{timeRemaining}}</span>
       <div class="progress_bar">
         <div class="progress"></div>
       </div>
-      <span class="total_time">3:26</span>
+      <span class="total_time">{{audioLength}}</span>
     </div>
   </div>
 </template>
 
 <script>
-// import {Howl, Howler} from 'howler'
+import {Howl, Howler} from 'howler'
 export default {
   name: 'audioplayer',
 
   props: ['fileName'],
 
-  data: () => ({
-    playing: false,
-    audio: Object,
-  }),
+  data() {
+    return {
+      playing: false,
+      audio: Object,
+      audioLength: "0:00",
+      timeRemaining: `0:00`,
+    }
+  },
 
-  mounted() {
-    
+  created() {
+    let self = this;
+    this.audio = new Howl({
+      src: [self.fileName],
+      preload: true,
+      onload: function() { self.audioLength = self.formattedTime(this.duration()) },
+      onloaderror: function(id, error) { console.log('loadError: ' + id +' - ' + error)},
+      onplay: function() { self.playing = true },
+      onpause: function() { self.playing = false }
+    });
+
+    setInterval(() => {
+      self.timeRemaining = self.formattedTime(self.audio.seek());
+    }, 100);
   },
 
   methods: {
     play() {
-      try {
-        var myAudio = document.createElement("audio");
-        myAudio.src = "./sample1.mp3";
-        myAudio.play();
-      }
-      catch (e) {
-        console.log(e)
-      }
+      this.audio.play();
     },
 
     pause() {
-      // this.audio.pause();
-      this.playing = false;
+      this.audio.pause();
+    },
+
+    formattedTime(time) {
+      let tempTime = Math.round(time);
+      if (isNaN(tempTime)) return "0:00";
+
+      let minutes = Math.floor(tempTime / 60);
+      let seconds = tempTime % 60;
+      if (seconds < 10)
+      {
+        seconds = `0${seconds}`;
+      }
+      return `${minutes}:${seconds}`;
     }
   },
 }
