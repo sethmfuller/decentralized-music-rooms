@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "fs": "0.0.1-security",
     "howler": "^2.1.2",
     "ipfs": "^0.37.1",
     "ipfs-cluster-api": "0.0.9",
+    "ipfs-pubsub-room": "^1.4.1",
+    "level-filesystem": "^1.2.0",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
