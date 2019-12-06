@@ -1,9 +1,9 @@
 <template>
   <div :class="addRoom ? 'roomtile add_room' : 'roomtile' ">
-    <div v-if="!addRoom" class="room_title">Seth's Electronic Music</div>
+    <div v-if="!addRoom" class="room_title">{{room.name}}</div>
     <div v-if="!addRoom" class="members">
       <img src="../assets/icons/user.svg" alt="user count">
-      <span>3</span>
+      <span>{{memberCount}}</span>
     </div>
     <img v-if="addRoom" src="../assets/icons/add.svg" alt="add room">
   </div>
@@ -14,7 +14,14 @@ export default {
   name: 'roomtile',
 
   props: {
-    addRoom: Boolean
+    addRoom: Boolean,
+    room: null,
   },
+
+  computed: {
+    memberCount() {
+      return this.room.obj.getPeers().length + 1;
+    }
+  }
 }
 </script>

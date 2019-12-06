@@ -31,7 +31,7 @@
 <script>
 import PubsubRoom from 'ipfs-pubsub-room'
 import fs from 'browserify-fs'
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: 'CreateRoomDialog',
 
@@ -44,12 +44,12 @@ export default {
   },
 
   computed: {
-    localComputed() {return {}},
-
     ...mapState(['ipfsInstance', 'ipfsInstanceId'])
   },
 
   methods: {
+    ...mapMutations(['addRoom']),
+
     nextStep() {
       if (this.roomName != null && this.roomName.trim() != "") {
         this.step++;
@@ -66,7 +66,7 @@ export default {
       room.on('peer joined', (peer) => {
         console.log(`Peer ${peer} joined.`);
       });
-      room.on('peer joined', (peer) => {
+      room.on('peer left', (peer) => {
         console.log(`Peer ${peer} left.`);
       });
       room.on('subscribed', () => {
@@ -76,6 +76,10 @@ export default {
         console.log('Got message from ' + message.from + ': ' + message.data.toString());
       });
 
+      this.addRoom({
+        obj: room,
+        name: this.roomName
+      });
       this.$emit('close');
     },
 

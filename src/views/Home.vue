@@ -6,11 +6,8 @@
     </div>
 
     <div class="rooms">
-      <div @click="goToRoom">
-        <RoomTile :addRoom=false></RoomTile>
-      </div>
-      <div @click="goToRoom">
-        <RoomTile :addRoom=false></RoomTile>
+      <div v-for="(room, index) in rooms" :key="index" @click="goToRoom(room)">
+        <RoomTile :room="room" :addRoom=false></RoomTile>
       </div>
       <div @click="createRoom">
         <RoomTile :addRoom=true></RoomTile>
@@ -50,7 +47,7 @@
 <script>
 import RoomTile from '../components/RoomTile'
 import CreateRoomDialog from '../components/CreateRoomDialog'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'home',
 
@@ -66,15 +63,14 @@ export default {
   },
 
   computed: {
-    localComputed() {
-      return {}
-    },
-
-    ...mapState(['ipfsInstance'])
+    ...mapState(['ipfsInstance', 'rooms'])
   },
 
   methods: {
-    goToRoom() {
+    ...mapMutations(['setCurrentRoom']),
+
+    goToRoom(room) {
+      this.setCurrentRoom(room);
       this.$router.push('/room');
     },
 
