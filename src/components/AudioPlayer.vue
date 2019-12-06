@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {Howl, Howler} from 'howler'
+import {Howl} from 'howler'
 export default {
   name: 'audioplayer',
 
