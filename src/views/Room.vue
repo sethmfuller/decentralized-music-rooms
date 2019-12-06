@@ -3,7 +3,7 @@
     <div class="header_content">
       <img src="../assets/icons/music_note.svg" alt="music note">
       <h1 class="page_title">{{currentRoom.name}}</h1>
-      <div class="big_button">Upload</div>
+      <div class="big_button" @click="openUploadDialog">Upload</div>
     </div>
     <div class="more_info">
       <div class="members">
@@ -20,23 +20,28 @@
     <div class="song_list">
       <SongListItem v-for="song in songs" :key="song.id" :song="song" :playing="false"></SongListItem>
     </div>
+
+    <UploadDialog @close="closeUploadDialog" v-if="uploadDialogOpen"></UploadDialog>
   </div>
 </template>
 
 <script>
 import AudioPlayer from '../components/AudioPlayer'
 import SongListItem from '../components/SongListItem'
+import UploadDialog from '../components/UploadDialog'
 import { mapState } from "vuex";
 export default {
   name: 'room',
 
   components: {
     AudioPlayer,
-    SongListItem
+    SongListItem,
+    UploadDialog,
   },
 
   data: () => ({
-    songs: []
+    songs: [],
+    uploadDialogOpen: false,
   }),
 
   computed: {
@@ -45,6 +50,16 @@ export default {
     memberCount() {
       return this.currentRoom.obj.getPeers().length + 1;
     },
+  },
+
+  methods: {
+    closeUploadDialog() {
+      this.uploadDialogOpen = false;
+    },
+
+    openUploadDialog() {
+      this.uploadDialogOpen = true;
+    }
   },
 
   created() {
