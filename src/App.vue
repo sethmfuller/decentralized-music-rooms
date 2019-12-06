@@ -17,8 +17,6 @@ export default {
   },
 
   computed: {
-    localComputed() {return {}},
-
     ...mapState(['ipfsInstance', 'ipfsInstanceId'])
   },
 
