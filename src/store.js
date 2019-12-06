@@ -9,6 +9,7 @@ export default new Vuex.Store({
     ipfsInstanceId: null,
     rooms: [],
     currentRoom: null,
+    currentRoomHashes: [],
   },
   mutations: {
     setIPFSInstance(state, instance) {
@@ -25,6 +26,10 @@ export default new Vuex.Store({
 
     addRoom(state, room) {
       state.rooms.push(room);
+    },
+
+    addToCurrentRoomHashes(state, hash) {
+      state.currentRoomHashes.push(hash);
     },
   },
   actions: {
