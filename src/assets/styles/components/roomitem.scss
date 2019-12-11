@@ -1,0 +1,55 @@
+// roomtile.scss
+
+.roomItem {
+  width: 100%;
+  height: 50px;
+  background-color: $secondary;
+  border-radius: 3px;
+  margin-right: 50px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .room_title {
+    width: 200px;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-right: 1px $primary solid;
+    
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .members {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin-left: 10px;
+  }
+
+  .leave-link {
+    width: 100px;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    margin-right: 20px;
+    color: $accent;
+    transition: ease-in 50ms;
+  }
+
+  .leave-link:hover {
+    background-color: $primary;
+  }
+}

@@ -35,3 +35,6 @@ npm run test:e2e
 ```
 npm run test:unit
 ```
+
+## To Do
+* Validate Create New Room text input field

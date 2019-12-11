@@ -7,9 +7,6 @@
     <div class="section song_name">
       {{song.name}}
     </div>
-    <div class="section song_length">
-      {{song.length}}
-    </div>
     <div class="section options">
       <img src="../assets/icons/info.svg" alt="">
     </div>
@@ -28,6 +25,10 @@ export default {
   methods: {
     pause() {
       this.$emit('pause');
+    },
+
+    play() {
+      this.$emit('play', this.song);
     }
   }
 }
