@@ -21,6 +21,10 @@
     }
   }
 
+  input[type="file"] {
+    display: none;
+  }
+
   .now_playing {
     margin-top: 70px;
     display: flex;

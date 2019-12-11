@@ -42,7 +42,7 @@ export default {
       setTimeout(() => { this.$refs.roomNameInput.focus() }, 250);
     },
     
-    close(event) {
+    close() {
       this.roomName = '';
       this.isOpen = false;
     },

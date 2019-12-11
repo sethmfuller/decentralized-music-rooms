@@ -53,17 +53,6 @@ export default {
 
   methods: {
     async play() {
-      var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      var source = audioCtx.createBufferSource();
-
-      await this.ipfsInstance.cat(hash, function(err, files) {
-        audioCtx.decodeAudioData(files.buffer, function(buffer) {
-          source.buffer = buffer;
-          source.connect(audioCtx.destination);
-          source.start();
-        })
-      });
-
       this.audio.play();
     },
 

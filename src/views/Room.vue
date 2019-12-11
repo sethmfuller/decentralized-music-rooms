@@ -3,7 +3,11 @@
     <div class="header_content">
       <img src="../assets/icons/music_note.svg" alt="music note">
       <h1 class="page_title">{{room.name}}</h1>
-      <div class="big_button" @click="openUploadDialog">Upload</div>
+      <!-- <div  @click="upload">Upload</div> -->
+      <label class="big_button" for="audioFile">
+          Upload
+          <input type="file" ref="audioFile" id="audioFile" alt="upload file" @input="upload">
+      </label>
     </div>
     <div class="more_info">
       <div class="members">
@@ -18,7 +22,7 @@
       <AudioPlayer :fileName="'../../audio/sample.mp3'" :song="currentlyLoadedSong"></AudioPlayer>
     </div>
     <div class="song_list">
-      <SongListItem v-for="song in room.songs" :key="song.hash" :song="song" :playing="false" @play="triggerAudioPlayer"></SongListItem>
+      <SongListItem v-for="song in room.songs" :key="song.hash" :song="song" @play="triggerAudioPlayer"></SongListItem>
     </div>
 
     <UploadDialog :room="room" @close="closeUploadDialog" v-if="uploadDialogOpen"></UploadDialog>
@@ -68,15 +72,32 @@ export default {
 
     triggerAudioPlayer(song) {
       this.currentlyLoadedSong = song;
-    }
-  },
+    },
 
-  created() {
-    // this.songs[1] = {
-    //   id: Math.random() * 100,
-    //   name: "Another Song",
-    //   src: "../assets/sample.mp3"
-    // };
+    async upload() {
+      this.loading = true;
+
+      // Get uploaded file
+      const audio = document.getElementById("audioFile");
+
+      // Add audio file to ipfs
+      const results = await this.ipfsInstance.add(audio.files[0]);
+      const hash = results[0].hash
+
+      // By pinning the file, other nodes on the IPFS network know 
+      // they can access the file from our machine.
+      await this.ipfsInstance.pin.add(hash);
+
+      let message = {
+        messageName: 'uploaded song',
+        roomName: this.room.name,
+        songName: audio.files[0].name,
+        hash: hash,
+      };
+      
+      // Broadcast to all peers in room that a song has been uploaded
+      this.room.obj.broadcast(`${JSON.stringify(message)}`);
+    },
   },
 }
 </script>
