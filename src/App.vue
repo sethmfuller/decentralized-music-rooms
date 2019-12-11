@@ -27,6 +27,7 @@ export default {
   created() {
     let ipfs = new IPFS({
       repo: `ipfs/dmrRepo/${Math.random()}`,
+      silent: true,
       EXPERIMENTAL: {
         pubsub: true
       },
@@ -49,7 +50,6 @@ export default {
     ipfs.on('ready', () => ipfs.id((err, info) => {
       this.setIPFSInstance(ipfs);
       this.setIPFSNodeId(info.id);
-      console.log(this.ipfsInstanceId);
     }));
   }
 }

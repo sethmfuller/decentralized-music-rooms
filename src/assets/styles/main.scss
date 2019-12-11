@@ -2,11 +2,11 @@
 @import 'home.scss';
 @import 'room.scss';
 @import './components/sidebar.scss';
-@import './components/roomtile.scss';
+@import './components/roomitem.scss';
 @import './components/audioplayer.scss';
 @import './components/songlistitem.scss';
-@import './components/createroomdialog.scss';
 @import './components/uploaddialog.scss';
+@import './components/createroombutton.scss';
 
 body {
   margin: 0px;

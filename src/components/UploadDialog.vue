@@ -16,10 +16,12 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 import Spinner from '../components/Spinner'
 export default {
   name: 'UploadDialog',
+
+  props: ['room'],
 
   components: {
     Spinner
@@ -32,11 +34,10 @@ export default {
   },
 
   computed: {
-    ...mapState(['ipfsInstance']),
+    ...mapState(['ipfsInstance', 'rooms']),
   },
 
   methods: {
-    ...mapMutations(['addToCurrentRoomHashes']),
 
     cancel() {
       this.$emit('close');
@@ -56,9 +57,15 @@ export default {
       // they can access the file from our machine.
       await this.ipfsInstance.pin.add(hash);
 
-      console.log(`Added file with hash: ${hash}`);
-
-      this.addToCurrentRoomHashes(hash);
+      let message = {
+        messageName: 'uploaded song',
+        roomName: this.room.name,
+        songName: photo.files[0].name,
+        hash: hash,
+      };
+      
+      // Broadcast to all peers in room that a song has been uploaded
+      this.room.obj.broadcast(`${JSON.stringify(message)}`);
 
       this.$emit('close');
     },
