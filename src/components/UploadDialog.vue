@@ -43,32 +43,7 @@ export default {
       this.$emit('close');
     },
 
-    async upload() {
-      this.loading = true;
-
-      // Get uploaded file
-      const photo = document.getElementById("audioFile");
-
-      // Add audio file to ipfs
-      const results = await this.ipfsInstance.add(photo.files[0]);
-      const hash = results[0].hash
-
-      // By pinning the file, other nodes on the IPFS network know 
-      // they can access the file from our machine.
-      await this.ipfsInstance.pin.add(hash);
-
-      let message = {
-        messageName: 'uploaded song',
-        roomName: this.room.name,
-        songName: photo.files[0].name,
-        hash: hash,
-      };
-      
-      // Broadcast to all peers in room that a song has been uploaded
-      this.room.obj.broadcast(`${JSON.stringify(message)}`);
-
-      this.$emit('close');
-    },
+    
   }
 }
 </script>

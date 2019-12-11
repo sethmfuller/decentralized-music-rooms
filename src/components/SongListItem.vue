@@ -1,8 +1,9 @@
 <template>
   <div class="song_list_item">
     <div class="section play_pause">
-      <img v-if="playing" src="../assets/icons/pause.svg" alt="pause">
-      <img v-else src="../assets/icons/play.svg" alt="">
+      <RippleSpinner v-if="state == 'loading'"></RippleSpinner>
+      <img v-else-if="state == 'playing'" src="../assets/icons/pause.svg" alt="pause" @click="pause">
+      <img v-else src="../assets/icons/play.svg" alt="" @click="play">
     </div>
     <div class="section song_name">
       {{song.name}}
@@ -14,6 +15,10 @@
 </template>
 
 <script>
+import Base64 from 'base64-arraybuffer'
+import { Howl } from 'howler'
+import { mapState } from 'vuex'
+import RippleSpinner from './RippleSpinner'
 export default {
   name: 'songlistitem',
 
@@ -22,13 +27,42 @@ export default {
     playing: Boolean
   },
 
+  components: {
+    RippleSpinner,
+  },
+
+  computed: {
+    ...mapState(['ipfsInstance']),
+  },
+
+  data() {
+    return {
+      audio: null,
+      state: 'loading',
+    }
+  },
+  
+  async created() {
+    let self = this;
+    await this.ipfsInstance.cat(this.song.hash, function(err, files) {
+      self.audio = new Howl({
+        src: ["data:audio/mp3;base64,"+Base64.encode(files.buffer)],
+        preload: true,
+        onload: function() { self.state = 'paused' },
+        onloaderror: function(id, error) { console.log('loadError: ' + id +' - ' + error)},
+        onplay: function() { self.state = 'playing' },
+        onpause: function() { self.state = 'paused' },
+      });
+    });
+  },
+
   methods: {
     pause() {
-      this.$emit('pause');
+      this.audio.pause();
     },
 
-    play() {
-      this.$emit('play', this.song);
+    async play() {
+      this.audio.play();
     }
   }
 }

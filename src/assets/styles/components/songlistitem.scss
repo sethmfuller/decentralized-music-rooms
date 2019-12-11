@@ -13,7 +13,9 @@
   }
 
   .play_pause{
-    justify-content: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 30px;
     height: 24px;
     cursor: pointer;

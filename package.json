@@ -10,6 +10,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "base64-arraybuffer": "^0.2.0",
     "browserify-fs": "^1.0.0",
     "buffer": "^5.4.3",
     "cluster": "^0.7.7",
