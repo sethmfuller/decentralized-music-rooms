@@ -45,8 +45,9 @@ export default {
   async created() {
     let self = this;
     await this.ipfsInstance.cat(this.song.hash, function(err, files) {
+      console.log(err);
       self.audio = new Howl({
-        src: ["data:audio/mp3;base64,"+Base64.encode(files.buffer)],
+        src: ["data:audio/mp3;base64," + Base64.encode(files.buffer)],
         preload: true,
         onload: function() { self.state = 'paused' },
         onloaderror: function(id, error) { console.log('loadError: ' + id +' - ' + error)},
@@ -61,7 +62,7 @@ export default {
       this.audio.pause();
     },
 
-    async play() {
+    play() {
       this.audio.play();
     }
   }
