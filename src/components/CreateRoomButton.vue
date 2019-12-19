@@ -56,7 +56,7 @@ export default {
           name: this.roomName,
           songs: [],
         });
-
+        
         let theRoomName = this.roomName;
 
         room.on('peer joined', (peer) => {
