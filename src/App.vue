@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <splashscreen v-show="!ready"></splashscreen>
     <sidebar></sidebar>
     <router-view/>
   </div>
@@ -7,13 +8,21 @@
 
 <script>
 import Sidebar from './components/Sidebar'
+import Splashscreen from './components/Splashscreen'
 import { mapState, mapMutations } from 'vuex'
 import IPFS from 'ipfs'
 export default {
   name:'app',
 
   components: {
-    Sidebar
+    Sidebar,
+    Splashscreen
+  },
+
+  data() {
+    return {
+      ready: false,
+    }
   },
 
   computed: {
@@ -50,6 +59,7 @@ export default {
     ipfs.on('ready', () => ipfs.id((err, info) => {
       this.setIPFSInstance(ipfs);
       this.setIPFSNodeId(info.id);
+      this.ready = true;
     }));
   }
 }

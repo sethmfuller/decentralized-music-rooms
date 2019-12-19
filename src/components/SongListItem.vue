@@ -44,8 +44,8 @@ export default {
   
   async created() {
     let self = this;
+    await this.ipfsInstance.file.pin(this.song.hash);
     await this.ipfsInstance.cat(this.song.hash, function(err, files) {
-      console.log(err);
       self.audio = new Howl({
         src: ["data:audio/mp3;base64," + Base64.encode(files.buffer)],
         preload: true,

@@ -1,0 +1,28 @@
+// splashscreen.scss
+
+@import '../variables.scss';
+
+.splashscreen {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1000;
+  background-color: $primary;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 4em;
+    color: $accent;
+    margin-bottom: 50px;
+  }
+
+  #spinner {
+    margin-top: 50px;
+  }
+}
