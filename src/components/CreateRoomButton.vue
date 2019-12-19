@@ -49,6 +49,7 @@ export default {
     submit() {
       if (this.roomName.trim() != '') {
         const room = PubsubRoom(this.ipfsInstance, this.roomName);
+
         // Add 
         this.addRoom({
           obj: room,
@@ -56,30 +57,43 @@ export default {
           songs: [],
         });
 
-        this.roomName = '';
+        let theRoomName = this.roomName;
 
         room.on('peer joined', (peer) => {
-          console.log(`Peer ${peer} joined.`);
+          let roomc = this.rooms.find(aRoom => {
+            return aRoom.name === theRoomName;
+          });
+
+          let message = {
+            messageName: 'new roommate',
+            roomName: theRoomName,
+            songs: roomc.songs,
+          };
+
+          room.sendTo(peer, `${JSON.stringify(message)}`);
         });
-        room.on('peer left', (peer) => {
-          console.log(`Peer ${peer} left.`);
+        room.on('peer left', () => {
         });
         room.on('subscribed', () => {
-          console.log('Connected');
         });
         room.on('message', (message) => {
           let m = JSON.parse(message.data);
           
           switch (m.messageName) {
             case "uploaded song":
-              this.handleUploadedSong(m);
+              this.handleUploadedSong(m, message.from);
+              break;
+            case "new roommate":
+              this.handleNewRoommate(m);
+              break;
           }
         });
+        this.roomName = '';
       }
         this.isOpen = false;
     },
 
-    handleUploadedSong(message) {
+    handleUploadedSong(message, messageFrom) {
       let room = this.rooms.find(room => {
         return room.name === message.roomName
       });
@@ -88,9 +102,25 @@ export default {
         room.songs.push({
           name: message.songName,
           hash: message.hash,
-          providerHash: message.from,
+          providerHash: messageFrom,
         });
       }
+    },
+
+    handleNewRoommate(message) {
+      let room = this.rooms.find(room => {
+        return room.name === message.roomName
+      });
+
+      message.songs.forEach(songFromMessage => {
+        let n = room.songs.findIndex(songFromRoom => {
+          return songFromRoom.hash === songFromMessage.hash;
+        });
+
+        if (n == -1) {
+          room.songs.push(songFromMessage);
+        }
+      });
     },
   },
 }

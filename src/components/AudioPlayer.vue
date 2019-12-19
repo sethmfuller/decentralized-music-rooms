@@ -7,7 +7,7 @@
       <img src="../assets/icons/fast_forward.svg" alt="fastforward button">
     </div>
 
-    <div class="song_name">A Song</div>
+    <!-- <div class="song_name">A Song</div> -->
     
     <div class="progress">
       <span class="running_time">{{timeRemaining}}</span>
