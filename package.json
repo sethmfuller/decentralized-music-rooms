@@ -18,7 +18,7 @@
     "epic-spinners": "^1.1.0",
     "fs": "0.0.1-security",
     "howler": "^2.1.2",
-    "ipfs": "^0.37.1",
+    "ipfs": "^0.66.1",
     "ipfs-cluster-api": "0.0.9",
     "ipfs-http-client": "^40.0.1",
     "ipfs-pubsub-room": "^1.4.1",
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-plugin-e2e-cypress": "^3.11.0",
+    "@vue/cli-plugin-e2e-cypress": "^5.0.9",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-plugin-pwa": "^3.11.0",
     "@vue/cli-plugin-unit-jest": "^3.11.0",
